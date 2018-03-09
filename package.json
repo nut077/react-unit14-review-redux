@@ -1,0 +1,9 @@
+{
+  "name": "core-react",
+  "version": "1.0.0",
+  "author": "Nut Freedom",
+  "license": "MIT",
+  "scripts": {
+    "dev": "npm run dev --prefix client"
+  }
+}
