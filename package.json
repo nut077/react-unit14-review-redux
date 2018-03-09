@@ -1,6 +1,7 @@
 {
   "name": "core-react",
   "version": "1.0.0",
+  "repository": "https://github.com/nut077/react-unit13-redux.git",
   "author": "Nut Freedom",
   "license": "MIT",
   "scripts": {
