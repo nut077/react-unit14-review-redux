@@ -1,5 +1,11 @@
-import React from 'react';
+import React from 'react'
+import { Header } from '../components'
+import { Articles, Users } from './'
 
 export default () => (
-  <div>App</div>
+  <div>
+    <Header />
+    <Articles />
+    <Users />
+  </div>
 )
