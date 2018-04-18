@@ -11,13 +11,12 @@ const UserList = ({ users }) => (
   </div>
 );
 
-
-/*UserList.propTypes = {
-  users: PropTypes.array(PropTypes.shape({
+UserList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired
   })).isRequired
-};*/
+};
 
 export default UserList
 

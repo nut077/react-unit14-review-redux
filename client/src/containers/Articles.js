@@ -14,7 +14,7 @@ const Articles = ({ articles, onEditArticle }) => (
       render={
         ({ match: { params } }) =>
           <EditArticle
-            {...articles.find(article => article.id === +params.id)}
+            {...articles.find(article => article.id === Number(params.id))}
             onSubmit={onEditArticle} />
       }
     />
@@ -34,7 +34,7 @@ export default compose(
   withHandlers({
     onEditArticle: ({ history, articles, setArticles }) => (id, article) => {
       setArticles(
-        articles.map(item => item.id === id ? {...item, article}: item)
+        articles.map(item => item.id === id ? {...item, ...article}: item)
       );
       history.push('/articles')
     }

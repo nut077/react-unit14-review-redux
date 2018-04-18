@@ -17,6 +17,8 @@ const EditArticle = ({
       value={title}
       onChange={onFieldChange}
     />
+    <br />
+    <label htmlFor='content'>Content</label>
     <input
       type='text'
       name='content'
@@ -24,12 +26,7 @@ const EditArticle = ({
       value={content}
       onChange={onFieldChange}
     />
-    <button
-      type='submit'
-      onClick={onSubmit}
-    >
-      Edit
-    </button>
+    <button type='submit' onClick={onSubmit}>Edit</button>
   </form>
 );
 
@@ -38,22 +35,21 @@ export default compose(
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    onSubmit: PropTypes.func.isRequired,
-    onFieldChange: PropTypes.func
+    onSubmit: PropTypes.func.isRequired
   }),
   withState(
     'formValues',
-    'setFormValue',
-    ({ title, content }) => ({ title, content})
+    'setFormValues',
+    ({ title, content }) => ({ title, content })
   ),
   withHandlers({
-    onSubmit: ({ id, onSubmit, formValue }) => event => {
+    onSubmit: ({ id, onSubmit, formValues }) => event => {
       event.preventDefault();
-      onSubmit(id, formValue);
+      onSubmit(id, formValues);
     },
-    onFieldChange: ({ formValue, setFormValue }) => event => {
+    onFieldChange: ({ formValues, setFormValues }) => event => {
       const { name, value } = event.target;
-      setFormValue({ ...formValue, [name]: value});
+      setFormValues({ ...formValues, [name]: value});
     }
   })
 )(EditArticle)
