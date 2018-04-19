@@ -1,4 +1,6 @@
 export default {
+  listeners: [],
+
   state: [
     {id: 1, title: 'My Article#1', content: 'My Content#1', authorId: 1},
     {id: 2, title: 'My Article#2', content: 'My Content#2', authorId: 1},
@@ -15,6 +17,12 @@ export default {
   editArticle(id, article) {
     this.state = this.state.map(
       item => item.id === id ? {...item, ...article} : item
-    )
+    );
+    this.listeners.forEach(listener => listener());
+  },
+
+  subscribe(listener) {
+    this.listeners.push(listener);
+    return () => this.listeners = this.listeners.filter(list => list !== listener);
   }
 }
