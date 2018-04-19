@@ -1,16 +1,17 @@
 import React from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { withState, withHandlers, compose } from 'recompose'
+import { withHandlers, compose } from 'recompose'
 import { UserList, EditUser } from '../components'
+import { UserStore } from '../stores';
 
-const Users = ({ users, onEditUsers }) => (
+const Users = ({ onEditUsers }) => (
   <Switch>
-    <Route exact path='/users' render={() => <UserList users={users} />} />
+    <Route exact path='/users' render={() => <UserList users={UserStore.getState()} />} />
     <Route path='/users/:id/edit' render=
       {
         ({ match: { params } }) =>
         <EditUser
-          {...users.find(user => user.id === Number(params.id))}
+          {...UserStore.getState().find(user => user.id === Number(params.id))}
           onSubmit={onEditUsers}
         />
       }
@@ -20,15 +21,9 @@ const Users = ({ users, onEditUsers }) => (
 
 export default compose(
   withRouter,
-  withState('users', 'setUsers', [
-    {id: 1, name: 'name#1'},
-    {id: 2, name: 'name#2'}
-  ]),
   withHandlers({
-    onEditUsers: ({ history, users, setUsers }) => (user) => {
-      setUsers(
-        users.map(item => item.id === user.id ? { ...item, ...user } : item)
-      );
+    onEditUsers: ({ history }) => (user) => {
+      UserStore.editUser(user);
       history.push('/users');
     }
   })
