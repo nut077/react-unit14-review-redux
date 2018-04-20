@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case 'EDIT_ARTICLE':
       return state.map(
         item => item.id === action.id ?
-          { ...item, ...action.article } : item
+          { id: action.id, ...action.article } : item
       );
     default: return state;
   }
