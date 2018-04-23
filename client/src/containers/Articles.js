@@ -1,41 +1,28 @@
 import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { compose } from 'recompose'
-import { Switch, Route, withRouter } from 'react-router-dom'
-import { ArticleList, EditArticle } from '../components'
-import { editArticle } from '../actions';
-import { connect } from 'react-redux';
+import { ArticleList } from '../components';
 
-const Articles = ({ articles, onEditArticle }) => (
+const Articles = ({ articles }) => (
   <div>
     <Switch>
+      <Route exact
+             path='/'
+             render={() => <ArticleList articles={articles} />}
+      />
       <Route
-        exact
         path='/articles'
-        render={() => <ArticleList articles={articles} />} />
-      <Route
-        path='/articles/:id/edit'
-        render={
-          ({ match: { params } }) =>
-            <EditArticle
-              {...articles.find(article => article.id === Number(params.id))}
-              onSubmit={onEditArticle} />
-        }
+        render={() => <ArticleList articles={articles} />}
       />
     </Switch>
+    <button type='button'>Add article</button>
   </div>
+
 );
 
 export default compose(
-  withRouter,
   connect(
-    ({ articles }) => ({
-      articles
-    }),
-    (dispatch, { history }) => ({
-      onEditArticle(id, article) {
-        dispatch(editArticle(id, article));
-        history.push('/articles')
-      }
-    })
+    ({ articles }) => ({ articles})
   )
 )(Articles)

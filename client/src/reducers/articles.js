@@ -10,12 +10,12 @@ const initialState = [
 ];
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-    case EDIT_ARTICLE:
-      return state.map(
-        item => item.id === action.id ?
-          { id: action.id, ...action.article } : item
-      );
-    default: return state;
-  }
+ switch (action.type) {
+   case EDIT_ARTICLE :
+    return state.map(
+      item => item.id === action.id ?
+        {id: action.id, ...action.article} : item
+    );
+   default: return state
+ }
 }

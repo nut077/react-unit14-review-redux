@@ -2,23 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 
 const context = path.resolve(__dirname, 'src');
-const cssModuleRules = [
-  'style-loader',
-  {
-    loader: 'css-loader',
-    options: {
-      module: true,
-      sourceMap: true,
-      localIdentName: '[path][name]__[local]--[hash:base64:5]'
-    }
-  },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: true
-    }
-  }
-];
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -27,7 +10,6 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      'normalize.css',
       './index'
     ]
   },
@@ -37,30 +19,14 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Actions: path.resolve(context, 'actions'),
-      Containers: path.resolve(context, 'containers'),
-      Components: path.resolve(context, 'components'),
-      Theme: path.resolve(context, 'theme')
+      Containers: path.resolve(context, 'containers')
     },
-    extensions: [".js", ".json", ".scss"]
+    extensions: [".js", ".json"]
   },
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, enforce: 'pre', loader: 'eslint-loader' },
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.css$/, use: cssModuleRules },
-      {
-        test: /\.scss$/,
-        use: [
-          ...cssModuleRules,
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      }
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
     ]
   },
   plugins: [

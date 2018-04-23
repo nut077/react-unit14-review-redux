@@ -1,15 +1,15 @@
 import React from 'react'
-import { Article } from './'
 import PropTypes from 'prop-types'
-import styles from './ArticleList.scss'
+import { Article } from '../components'
 
 const ArticleList = ({ articles }) => (
-  <div className={styles.articles}>
+  <ul>
     {
-      articles.map(article => <Article key={article.id} {...article} />)
+      articles.map(article =>
+        <Article key={article.id} {...article} />
+      )
     }
-  </div>
-
+  </ul>
 );
 
 ArticleList.propTypes = {
@@ -17,7 +17,7 @@ ArticleList.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired
-  }))
+  })).isRequired
 };
 
 export default ArticleList
