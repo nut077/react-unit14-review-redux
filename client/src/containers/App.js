@@ -7,7 +7,7 @@ import rootReducer from '../reducers'
 
 const store = createStore(rootReducer);
 export default () => (
-  <Provider store={store} >
+  <Provider store={store}>
     <div>
       <Header />
       <Articles />
