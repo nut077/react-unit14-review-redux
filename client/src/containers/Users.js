@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { setPropTypes, withHandlers, compose } from 'recompose'
+import { getContext, withHandlers, compose } from 'recompose'
 import PropTypes from 'prop-types'
 import { UserList, EditUser } from '../components'
 import { editUser } from '../actions'
@@ -22,13 +22,13 @@ const Users = ({ store, onEditUsers }) => (
 
 export default compose(
   withRouter,
+  getContext({
+    store: PropTypes.object
+  }),
   withHandlers({
     onEditUsers: ({ store, history }) => (user) => {
       store.dispatch(editUser(user));
       history.push('/users');
     }
-  }),
-  setPropTypes({
-    store: PropTypes.object.isRequired
   })
 )(Users)

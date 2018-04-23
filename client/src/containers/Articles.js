@@ -1,5 +1,5 @@
 import React from 'react'
-import { lifecycle, setPropTypes, withState, withHandlers, compose } from 'recompose'
+import { lifecycle, getContext, withState, withHandlers, compose } from 'recompose'
 import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ArticleList, EditArticle } from '../components'
@@ -27,6 +27,9 @@ const Articles = ({ store, onEditArticle }) => (
 
 export default compose(
   withRouter,
+  getContext({
+    store: PropTypes.object
+  }),
   withHandlers({
     onEditArticle: ({ store, history }) => (id, article) => {
       store.dispatch(editArticle(id, article));
@@ -44,8 +47,5 @@ export default compose(
     componentWillUnmount() {
       this.props.subscription();
     }
-  }),
-  setPropTypes({
-    store: PropTypes.object.isRequired
   })
 )(Articles)
