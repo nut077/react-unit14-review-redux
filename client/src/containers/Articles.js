@@ -3,6 +3,7 @@ import { lifecycle, setPropTypes, withState, withHandlers, compose } from 'recom
 import PropTypes from 'prop-types'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ArticleList, EditArticle } from '../components'
+import { editArticle } from '../actions';
 
 const Articles = ({ store, onEditArticle }) => (
   <div>
@@ -28,11 +29,7 @@ export default compose(
   withRouter,
   withHandlers({
     onEditArticle: ({ store, history }) => (id, article) => {
-      store.dispatch({
-        type: 'EDIT_ARTICLE',
-        id,
-        article
-      });
+      store.dispatch(editArticle(id, article));
       history.push('/articles');
     }
   }),

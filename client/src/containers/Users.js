@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import { setPropTypes, withHandlers, compose } from 'recompose'
 import PropTypes from 'prop-types'
 import { UserList, EditUser } from '../components'
+import { editUser } from '../actions'
 
 const Users = ({ store, onEditUsers }) => (
   <Switch>
@@ -23,10 +24,7 @@ export default compose(
   withRouter,
   withHandlers({
     onEditUsers: ({ store, history }) => (user) => {
-      store.dispatch({
-        type: 'EDIT_USER',
-        user
-      });
+      store.dispatch(editUser(user));
       history.push('/users');
     }
   }),
