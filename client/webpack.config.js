@@ -37,7 +37,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Lib: path.resolve(context, 'lib'),
       Actions: path.resolve(context, 'actions'),
       Containers: path.resolve(context, 'containers'),
       Components: path.resolve(context, 'components'),
