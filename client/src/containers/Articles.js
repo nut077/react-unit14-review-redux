@@ -3,7 +3,7 @@ import { compose } from 'recompose'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ArticleList, EditArticle } from '../components'
 import { editArticle } from '../actions';
-import { connect } from '../lib';
+import { connect } from 'react-redux';
 
 const Articles = ({ articles, onEditArticle }) => (
   <div>

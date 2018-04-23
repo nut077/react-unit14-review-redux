@@ -1,7 +1,8 @@
 import React from 'react'
 import { Header } from '../components'
-import { Articles, Users, Provider } from './'
-import { createStore } from '../lib';
+import { Articles, Users } from './'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import rootReducer from '../reducers'
 
 const store = createStore(rootReducer);

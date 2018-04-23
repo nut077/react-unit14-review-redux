@@ -3,7 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 import { UserList, EditUser } from '../components'
 import { editUser } from '../actions'
-import { connect } from '../lib'
+import { connect } from 'react-redux'
 
 const Users = ({ users, onEditUsers }) => (
   <Switch>
