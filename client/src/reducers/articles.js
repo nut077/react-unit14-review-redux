@@ -18,14 +18,14 @@ export default (state = initialState, action) => {
      const index = state.findIndex(article => article.id === Number(action.article.id));
      const article = state[index];
      return [
-       ...state.slice(index),
+       ...state.slice(0, index),
        {...article, ...action.article},
        ...state.slice(index + 1)
      ]
    }
    case DELETE_ARTICLE : {
-     const index = state.findIndex(article => article.id === action.id);
-     return [...state.slice(index), ...state.slice(index + 1)];
+     const index = state.findIndex(article => article.id === Number(action.id));
+     return [...state.slice(0, index), ...state.slice(index + 1)];
    }
    default: return state
  }

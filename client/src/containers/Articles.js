@@ -45,11 +45,7 @@ const Articles = ({ articles }) => (
       />
       <Route
         path='/article/:id'
-        render={({ match: {params} } ) =>
-          <ShowArticle
-            article={articles.find(article => article.id === Number(params.id))}
-          />
-        }
+        component={ShowArticle}
       />
     </Switch>
   </div>
