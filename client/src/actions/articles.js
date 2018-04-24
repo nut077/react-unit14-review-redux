@@ -1,7 +1,32 @@
-export const editArticle = (id, article) => (
+let nextId = 7;
+
+export const createArticle = ({ title, content }) => (
   {
-    type: 'EDIT_ARTICLE',
-    id,
-    article
+    type: 'CREATE_ARTICLE',
+    article: {
+      id: nextId++,
+      title,
+      content
+    }
   }
 );
+
+export const editArticle = (id, {title, content }) => (
+  {
+    type: 'EDIT_ARTICLE',
+    article: {
+      id,
+      title,
+      content
+    }
+  }
+);
+
+export const deleteArticle = (id) => (
+  {
+    type: 'DELETE_ARTICLE',
+    id
+  }
+);
+
+

@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
-const Article = ({ title, content }) => (
+const Article = ({ id, title }) => (
   <li>
-    <div>{title}</div>
-    <div>{content}</div>
+    <Link to={`/article/${id}`}>{title}</Link>
   </li>
 );
 
 Article.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default Article
