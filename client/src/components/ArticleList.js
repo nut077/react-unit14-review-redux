@@ -1,23 +1,28 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { compose } from 'recompose'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { Article } from '../components'
 
 const ArticleList = ({ articles }) => (
-  <ul>
-    {
-      articles.map(article =>
-        <Article key={article.id} {...article} />
-      )
-    }
-  </ul>
+  <div>
+    <ul>
+      {
+        articles.map(article =>
+          <Article key={article.id} {...article} />
+        )
+      }
+    </ul>
+    <Link to='/articles/new'>
+      <button type="button">New article</button>
+    </Link>
+  </div>
 );
 
-ArticleList.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired
-  })).isRequired
-};
-
-export default ArticleList
+export default compose(
+  withRouter,
+  connect(
+    ({ articles }) => ({ articles })
+  )
+)(ArticleList)

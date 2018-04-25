@@ -11,11 +11,11 @@ export const createArticle = ({ title, content }) => (
   }
 );
 
-export const editArticle = (id, {title, content }) => (
+export const editArticle = (id, { title, content }) => (
   {
     type: 'EDIT_ARTICLE',
+    id,
     article: {
-      id,
       title,
       content
     }

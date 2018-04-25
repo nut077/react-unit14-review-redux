@@ -22,10 +22,10 @@ const ShowArticle = ({ article: { id, title, content }, deleteArticle }) => (
 export default compose(
   withRouter,
   connect(
-    ({ articles }, { match: {params} } ) => ({
+    ({ articles }, { match: { params } } ) => ({
       article: articles.find(article => article.id === Number(params.id))
     }),
-    (dispatch, { match: {params}, history }) => ({
+    (dispatch, { match: { params }, history }) => ({
       deleteArticle() {
         dispatch(deleteArticle(params.id));
         history.push('/articles');

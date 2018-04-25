@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
      return [...state, action.article];
    }
    case EDIT_ARTICLE : {
-     const index = state.findIndex(article => article.id === Number(action.article.id));
+     const index = state.findIndex(article => article.id === Number(action.id));
      const article = state[index];
      return [
        ...state.slice(0, index),

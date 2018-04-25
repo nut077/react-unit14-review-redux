@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { setPropTypes, compose } from 'recompose'
+import { compose } from 'recompose'
 import { withRouter } from 'react-router-dom'
 import { editArticle } from '../actions';
 import { Form } from '../components'
@@ -12,17 +11,13 @@ const EditArticle = ({ article, editArticle }) => (
 
 export default compose(
   withRouter,
-  setPropTypes({
-    article: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired
-    }).isRequired
-  }),
   connect(
-    null,
-    (dispatch, { history, article: {id} }) => ({
+    ({ articles }, { match: { params } } ) => ({
+      article: articles.find(article => article.id === Number(params.id))
+    }),
+    (dispatch, { match: { params }, history }) => ({
       editArticle(article) {
+        const id = params.id;
         dispatch(editArticle(id, article));
         history.push(`/article/${id}`);
       }
