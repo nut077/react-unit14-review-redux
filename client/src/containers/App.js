@@ -1,10 +1,9 @@
 import React from 'react'
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import rootReducer from '../reducers'
+import { loadState, configureStore } from '../lib';
 import { Articles } from './';
 
-const store = createStore(rootReducer);
+let store = configureStore(loadState());
 
 export default () => (
   <Provider store={store}>

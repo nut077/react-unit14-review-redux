@@ -1,10 +1,8 @@
-let nextId = 7;
-
 export const createArticle = ({ title, content }) => (
   {
     type: 'CREATE_ARTICLE',
     article: {
-      id: nextId++,
+      id: Number(new Date()),
       title,
       content
     }
