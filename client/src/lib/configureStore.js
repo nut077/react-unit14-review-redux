@@ -1,16 +1,27 @@
-import { createStore , applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import { storage } from '../middlewares'
 import rootReducer from '../reducers'
 
-export default function(initialState) {
+export default function (initialState) {
   const middlewares = [
     storage,
     logger
   ];
-  return createStore(
+
+  const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middlewares)
+    compose(
+      applyMiddleware(...middlewares)
+    )
   );
+
+  if (module.hot) {
+    module.hot.accept('../reducers', () =>
+      store.replaceReducer(rootReducer)
+    )
+  }
+
+  return store;
 }

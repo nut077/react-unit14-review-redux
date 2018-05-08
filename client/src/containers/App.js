@@ -7,7 +7,9 @@ let store = configureStore(loadState());
 
 export default () => (
   <Provider store={store}>
-    <Articles />
+    <div>
+      <Articles />
+    </div>
   </Provider>
 )
 
